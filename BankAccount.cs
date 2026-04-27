@@ -2,14 +2,15 @@
 
 namespace BankSystemProject
 {
-    public delegate void AccountNotificationHandler(string message);
+    public delegate void AccountNotificationHandler(string message); //خاص بالاشعارات
 
     public abstract class BankAccount : IBankAccount
     {
-        public static int TotalAccounts { get; private set; }
+        public static int TotalAccounts 
+        { get; private set; }
 
-        private string _accountNumber;
-        private double _balance;
+        private string _accountNumber;  // رقم الحساب مخزن بشكل خاص 
+        private double _balance;  // الرصيد مخزن بشكل خاص 
 
         public string AccountNumber
         {
@@ -22,7 +23,7 @@ namespace BankSystemProject
             get { return _balance; }
             protected set { _balance = value; }
         }
-        public event AccountNotificationHandler OnTransactionOccurred;
+        public event AccountNotificationHandler OnTransactionOccurred;   // يتم اطلاقه عند حدوث اي عملية مالية
 
         public BankAccount(string accNo, double initialBalance)
         {
@@ -37,12 +38,12 @@ namespace BankSystemProject
             OnTransactionOccurred?.Invoke(message);
         }
 
-        public void Deposit(double amount)
+        public void Deposit(double amount)  // عملية ايداع
         {
             if (amount > 0)
             {
                 _balance += amount;
-                Notify($"Deposit successful: {amount}. Current Balance: {_balance}");
+                Notify($"Deposit successful: {amount}. Current Balance: {_balance}"); // ارسال اشعار بعد الايداع
             }
         }
 
