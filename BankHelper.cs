@@ -15,7 +15,7 @@ namespace BankSystemProject
         }
         public static bool IsValidAccountNumber(string accNo)
         {
-            return !string.IsNullOrEmpty(accNo) && accNo.StartsWith("ACC-");
+            return !string.IsNullOrEmpty(accNo) && accNo.StartsWith("ACC-"); // يتحقق ان رقم الحساب ليس فارغ ويبدأ ب-ACC
         }
     }
 }
